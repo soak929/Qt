@@ -291,7 +291,9 @@
     } else {
       $("ref-title").textContent = "오늘 본문 준비 중";
       showNotice(
-        NOW.h < 6
+        !navigator.onLine
+          ? "지금 인터넷에 연결되어 있지 않아 오늘 본문을 가져오지 못했어요. 연결되면 다시 열어 주세요. 그동안 아래에서 본문을 직접 고르실 수 있어요."
+          : NOW.h < 6
           ? "오늘 본문은 새벽 6시 전에 준비돼요. 아래에서 본문을 직접 고르시거나, 생명의삶에서 바로 보실 수 있어요."
           : "오늘 본문을 아직 가져오지 못했어요. 아래에서 본문을 직접 고르시거나, 생명의삶에서 바로 보실 수 있어요."
       );
@@ -300,4 +302,11 @@
   }
 
   init();
+
+  // 오프라인 지원
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
 })();
