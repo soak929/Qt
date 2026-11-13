@@ -1,6 +1,6 @@
 {
-  "name": "오늘의 큐티",
-  "short_name": "오늘의 큐티",
+  "name": "광우의 묵상",
+  "short_name": "광우의 묵상",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
