@@ -113,7 +113,8 @@ def main():
     hist_path = DATA / "history.json"
     history = json.loads(hist_path.read_text(encoding="utf-8")) if hist_path.exists() else {}
 
-    if today in history:
+    check = os.environ.get("CHECK", "").lower() == "true"
+    if today in history and not check:
         print(f"[ok] {today} 은 이미 저장됨: {history[today]['label']}")
         return 0
 
@@ -140,6 +141,9 @@ def main():
 
     ref["label"] = label(ref)
     ref["date"] = today
+    if check:
+        print(f"[check] 페이지 날짜={shown_date}, 장절={ref['label']} (저장 안 함)")
+        return 0
     ref["source_url"] = url
     history[today] = ref
     hist_path.write_text(json.dumps(dict(sorted(history.items())), ensure_ascii=False, indent=1), encoding="utf-8")

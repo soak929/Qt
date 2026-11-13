@@ -6,7 +6,12 @@ on:
     - cron: "20 15 * * *"
     - cron: "0 18 * * *"
     - cron: "30 20 * * *"
-  workflow_dispatch: {}   # Actions 탭에서 수동 실행 가능
+  workflow_dispatch:      # Actions 탭에서 수동 실행 가능
+    inputs:
+      check:
+        description: "점검만 하기 (저장 안 함)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -26,7 +31,8 @@ jobs:
       - name: 생명의삶 장절 가져오기
         env:
           # 마지막(05:30) 실행에서도 못 구하면 실패 처리 → GitHub가 메일로 알려줌
-          STRICT: ${{ github.event.schedule == '30 20 * * *' }}
+          STRICT: ${{ github.event.schedule == '30 20 * * *' || inputs.check == true }}
+          CHECK: ${{ inputs.check == true }}
         run: python scripts/fetch_qt.py
       - name: 변경사항 저장
         run: |
