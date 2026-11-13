@@ -53,32 +53,57 @@
   }
 
   // ---------- 본문 표시 ----------
-  async function showPassage(ref, title) {
+  let HL = store.get("qt.hl", {});
+
+  function setHeader(bookName, head, pill) {
+    $("book-title").textContent = bookName;
+    $("ref-title").textContent = head;
+    $("pill-ref").textContent = pill;
+  }
+
+  function verseHead(ref) {
+    if (ref.start_ch === ref.end_ch) {
+      if (ref.end_v >= 999) return `${ref.start_ch}장`;
+      return ref.start_v === ref.end_v ? `${ref.start_ch}장 ${ref.start_v}절` : `${ref.start_ch}장 ${ref.start_v}–${ref.end_v}절`;
+    }
+    return `${ref.start_ch}장 ${ref.start_v}절 – ${ref.end_ch}장 ${ref.end_v}절`;
+  }
+
+  async function showPassage(ref) {
     const box = $("verses");
     box.textContent = "";
-    $("ref-title").textContent = title || ref.label;
     try {
       const book = await getBook(ref.book_no);
+      setHeader(book.name, verseHead(ref), `${book.name} ${ref.start_ch}`);
       for (let ch = ref.start_ch; ch <= ref.end_ch; ch++) {
         const chapter = book.chapters[String(ch)] || {};
         const nums = Object.keys(chapter).map(Number).sort((a, b) => a - b);
         const from = ch === ref.start_ch ? ref.start_v : 1;
         const to = ch === ref.end_ch ? ref.end_v : nums[nums.length - 1];
-        if (ref.start_ch !== ref.end_ch) {
-          const mark = document.createElement("p");
-          mark.className = "ch-mark";
-          mark.textContent = `${ch}장`;
-          box.appendChild(mark);
-        }
-        nums.filter((n) => n >= from && n <= to).forEach((n) => {
-          const p = document.createElement("p");
-          const vn = document.createElement("span");
-          vn.className = "vn";
-          vn.textContent = n;
-          p.appendChild(vn);
-          p.appendChild(document.createTextNode(chapter[String(n)]));
-          box.appendChild(p);
+        const para = document.createElement("p");
+        const cap = document.createElement("span");
+        cap.className = "dropcap";
+        cap.textContent = ch;
+        para.appendChild(cap);
+        nums.filter((n) => n >= from && n <= to).forEach((n, i) => {
+          const key = `${book.no}-${ch}-${n}`;
+          const span = document.createElement("span");
+          span.className = "v" + (HL[key] ? " hl" : "");
+          if (!(i === 0 && n === 1)) {
+            const vn = document.createElement("sup");
+            vn.className = "vn";
+            vn.textContent = n;
+            span.appendChild(vn);
+          }
+          span.appendChild(document.createTextNode(chapter[String(n)] + " "));
+          span.onclick = () => {
+            if (HL[key]) delete HL[key]; else HL[key] = true;
+            span.classList.toggle("hl", !!HL[key]);
+            store.set("qt.hl", HL);
+          };
+          para.appendChild(span);
         });
+        box.appendChild(para);
       }
     } catch (e) {
       box.textContent = "본문을 불러오지 못했어요. 인터넷 연결을 확인하고 다시 열어 주세요.";
@@ -117,7 +142,7 @@
     $("pick-go").onclick = () => {
       const b = BOOKS.find((x) => x.no === +bookSel.value);
       const ch = +chSel.value;
-      showPassage({ book_no: b.no, start_ch: ch, start_v: 1, end_ch: ch, end_v: 999 }, `${b.name} ${ch}장`);
+      showPassage({ book_no: b.no, start_ch: ch, start_v: 1, end_ch: ch, end_v: 999 });
     };
     $("picker").hidden = false;
   }
@@ -222,6 +247,7 @@
       btn.textContent = "이 날 본문 다시 읽기";
       btn.onclick = () => {
         showNotice(`${prettyDate(key)} 본문이에요.`);
+        $("today-date").textContent = prettyDate(key);
         showPassage(ref);
         $("duranno-link").href = DURANNO(key);
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -242,7 +268,6 @@
     let idx = store.get("qt.scale", 1);
     const apply = () => {
       document.documentElement.style.setProperty("--scale", SCALES[idx]);
-      $("font-btn").querySelector("span").textContent = "+".repeat(idx) || "+";
     };
     apply();
     $("font-btn").onclick = () => { idx = (idx + 1) % SCALES.length; store.set("qt.scale", idx); apply(); };
@@ -261,8 +286,9 @@
 
   // ---------- 시작 ----------
   async function init() {
-    if (CFG.title) { $("site-title").textContent = CFG.title; document.title = CFG.title; }
-    $("today-date").textContent = prettyDate(TODAY);
+    if (CFG.title) document.title = CFG.title;
+    $("today-date").textContent = `${CFG.title ? CFG.title + " · " : ""}${prettyDate(TODAY).replace(/^\d+년 /, "")}`;
+    $("cal-jump").onclick = () => $("cal-section").scrollIntoView({ behavior: "smooth" });
     $("duranno-link").href = DURANNO(TODAY);
     setupFont();
     setupGift();
@@ -279,7 +305,7 @@
       HISTORY = history || {};
       if (today && today.date && !HISTORY[today.date]) HISTORY[today.date] = today;
     } catch (e) {
-      $("ref-title").textContent = "잠시 연결이 어려워요";
+      setHeader("잠시만요", "", "연결 확인");
       showNotice("인터넷 연결을 확인하고 다시 열어 주세요.");
       return;
     }
@@ -289,7 +315,7 @@
     if (ref) {
       showPassage(ref);
     } else {
-      $("ref-title").textContent = "오늘 본문 준비 중";
+      setHeader("오늘의 말씀", "본문 준비 중", "오늘 본문");
       showNotice(
         !navigator.onLine
           ? "지금 인터넷에 연결되어 있지 않아 오늘 본문을 가져오지 못했어요. 연결되면 다시 열어 주세요. 그동안 아래에서 본문을 직접 고르실 수 있어요."

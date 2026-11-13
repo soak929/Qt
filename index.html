@@ -4,58 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>오늘의 큐티</title>
-  <meta name="theme-color" content="#F7F2E9">
+  <meta name="theme-color" content="#FFFFFF">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="오늘의 큐티">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="top">
-    <div class="top-row">
-      <h1 id="site-title">오늘의 큐티</h1>
-      <button id="font-btn" class="chip" aria-label="글씨 크기 바꾸기">가<span>+</span></button>
+  <!-- 상단 바 -->
+  <header class="bar">
+    <div class="pill" role="group" aria-label="오늘 본문">
+      <span id="pill-ref">불러오는 중</span>
+      <span class="pill-sep"></span>
+      <span>개역한글</span>
     </div>
-    <p id="today-date" class="date"></p>
+    <div class="bar-icons">
+      <button id="font-btn" class="icon-btn" aria-label="글씨 크기 바꾸기"><span class="aa">가<small>가</small></span></button>
+      <button id="cal-jump" class="icon-btn" aria-label="묵상 달력 보기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+      </button>
+    </div>
   </header>
 
   <main>
     <!-- 오늘의 말씀 -->
-    <section class="card word" aria-labelledby="ref-title">
-      <p class="eyebrow">오늘의 말씀 · 개역한글</p>
-      <h2 id="ref-title" class="ref">불러오는 중…</h2>
+    <article class="reader" aria-labelledby="book-title">
+      <p id="today-date" class="kicker"></p>
+      <h1 id="book-title" class="book">&nbsp;</h1>
+      <div class="ornament" aria-hidden="true"><span></span></div>
+      <h2 id="ref-title" class="passage-head"></h2>
+
       <div id="notice" class="notice" hidden></div>
       <div id="picker" class="picker" hidden>
-        <p>본문을 직접 골라 읽으실 수 있어요.</p>
         <div class="picker-row">
           <select id="pick-book" aria-label="성경"></select>
           <select id="pick-chapter" aria-label="장"></select>
-          <button id="pick-go" class="btn">읽기</button>
+          <button id="pick-go" class="btn dark">읽기</button>
         </div>
       </div>
+
       <div id="verses" class="verses"></div>
-      <a id="duranno-link" class="link-out" target="_blank" rel="noopener">생명의삶에서 해설 보기 →</a>
-    </section>
+      <p class="tip">구절을 누르면 형광펜으로 표시돼요</p>
+      <a id="duranno-link" class="link-out" target="_blank" rel="noopener">생명의삶에서 해설 보기<span aria-hidden="true">↗</span></a>
+    </article>
 
     <!-- 한 줄 기록 -->
-    <section class="card note" aria-labelledby="note-title">
-      <h2 id="note-title" class="section-title">오늘의 한 줄</h2>
+    <section class="block" aria-labelledby="note-title">
+      <h2 id="note-title" class="block-title">오늘의 한 줄</h2>
       <p class="hint">마음에 남은 말씀이나 기도를 한 줄로 남겨 보세요.</p>
       <textarea id="note-input" rows="3" maxlength="300" placeholder="예) 편안함보다 이웃의 아픔을 먼저 보게 하소서"></textarea>
-      <button id="done-btn" class="btn primary wide">오늘 묵상 완료</button>
+      <button id="done-btn" class="btn dark wide">오늘 묵상 완료</button>
       <p id="saved-msg" class="saved" hidden></p>
     </section>
 
     <!-- 달력 -->
-    <section class="card cal" aria-labelledby="cal-title">
+    <section class="block" id="cal-section" aria-labelledby="cal-title">
       <div class="cal-head">
         <button id="cal-prev" class="icon-btn" aria-label="이전 달">‹</button>
-        <h2 id="cal-title" class="section-title"></h2>
+        <h2 id="cal-title" class="block-title"></h2>
         <button id="cal-next" class="icon-btn" aria-label="다음 달">›</button>
       </div>
       <p id="cal-count" class="hint center"></p>
@@ -74,11 +86,11 @@
   <!-- 선물 메시지 -->
   <div id="gift" class="gift" hidden role="dialog" aria-modal="true" aria-labelledby="gift-title">
     <div class="gift-card">
-      <p class="gift-mark">✝</p>
       <h2 id="gift-title">선물이에요</h2>
+      <div class="ornament" aria-hidden="true"><span></span></div>
       <p id="gift-msg" class="gift-msg"></p>
       <p id="gift-from" class="gift-from"></p>
-      <button id="gift-close" class="btn primary wide">말씀 읽으러 가기</button>
+      <button id="gift-close" class="btn dark wide">말씀 읽으러 가기</button>
     </div>
   </div>
 
