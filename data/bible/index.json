@@ -1,0 +1,398 @@
+[
+{
+"no": 1,
+"code": "GEN",
+"name": "창세기",
+"chapters": 50
+},
+{
+"no": 2,
+"code": "EXO",
+"name": "출애굽기",
+"chapters": 40
+},
+{
+"no": 3,
+"code": "LEV",
+"name": "레위기",
+"chapters": 27
+},
+{
+"no": 4,
+"code": "NUM",
+"name": "민수기",
+"chapters": 36
+},
+{
+"no": 5,
+"code": "DEU",
+"name": "신명기",
+"chapters": 34
+},
+{
+"no": 6,
+"code": "JOS",
+"name": "여호수아",
+"chapters": 24
+},
+{
+"no": 7,
+"code": "JDG",
+"name": "사사기",
+"chapters": 21
+},
+{
+"no": 8,
+"code": "RUT",
+"name": "룻기",
+"chapters": 4
+},
+{
+"no": 9,
+"code": "1SA",
+"name": "사무엘상",
+"chapters": 31
+},
+{
+"no": 10,
+"code": "2SA",
+"name": "사무엘하",
+"chapters": 24
+},
+{
+"no": 11,
+"code": "1KI",
+"name": "열왕기상",
+"chapters": 22
+},
+{
+"no": 12,
+"code": "2KI",
+"name": "열왕기하",
+"chapters": 25
+},
+{
+"no": 13,
+"code": "1CH",
+"name": "역대상",
+"chapters": 29
+},
+{
+"no": 14,
+"code": "2CH",
+"name": "역대하",
+"chapters": 36
+},
+{
+"no": 15,
+"code": "EZR",
+"name": "에스라",
+"chapters": 10
+},
+{
+"no": 16,
+"code": "NEH",
+"name": "느헤미야",
+"chapters": 13
+},
+{
+"no": 17,
+"code": "EST",
+"name": "에스더",
+"chapters": 10
+},
+{
+"no": 18,
+"code": "JOB",
+"name": "욥기",
+"chapters": 42
+},
+{
+"no": 19,
+"code": "PSA",
+"name": "시편",
+"chapters": 150
+},
+{
+"no": 20,
+"code": "PRO",
+"name": "잠언",
+"chapters": 31
+},
+{
+"no": 21,
+"code": "ECC",
+"name": "전도서",
+"chapters": 12
+},
+{
+"no": 22,
+"code": "SNG",
+"name": "아가",
+"chapters": 8
+},
+{
+"no": 23,
+"code": "ISA",
+"name": "이사야",
+"chapters": 66
+},
+{
+"no": 24,
+"code": "JER",
+"name": "예레미야",
+"chapters": 52
+},
+{
+"no": 25,
+"code": "LAM",
+"name": "예레미야애가",
+"chapters": 5
+},
+{
+"no": 26,
+"code": "EZK",
+"name": "에스겔",
+"chapters": 48
+},
+{
+"no": 27,
+"code": "DAN",
+"name": "다니엘",
+"chapters": 12
+},
+{
+"no": 28,
+"code": "HOS",
+"name": "호세아",
+"chapters": 14
+},
+{
+"no": 29,
+"code": "JOL",
+"name": "요엘",
+"chapters": 3
+},
+{
+"no": 30,
+"code": "AMO",
+"name": "아모스",
+"chapters": 9
+},
+{
+"no": 31,
+"code": "OBA",
+"name": "오바댜",
+"chapters": 1
+},
+{
+"no": 32,
+"code": "JON",
+"name": "요나",
+"chapters": 4
+},
+{
+"no": 33,
+"code": "MIC",
+"name": "미가",
+"chapters": 7
+},
+{
+"no": 34,
+"code": "NAM",
+"name": "나훔",
+"chapters": 3
+},
+{
+"no": 35,
+"code": "HAB",
+"name": "하박국",
+"chapters": 3
+},
+{
+"no": 36,
+"code": "ZEP",
+"name": "스바냐",
+"chapters": 3
+},
+{
+"no": 37,
+"code": "HAG",
+"name": "학개",
+"chapters": 2
+},
+{
+"no": 38,
+"code": "ZEC",
+"name": "스가랴",
+"chapters": 14
+},
+{
+"no": 39,
+"code": "MAL",
+"name": "말라기",
+"chapters": 4
+},
+{
+"no": 40,
+"code": "MAT",
+"name": "마태복음",
+"chapters": 28
+},
+{
+"no": 41,
+"code": "MRK",
+"name": "마가복음",
+"chapters": 16
+},
+{
+"no": 42,
+"code": "LUK",
+"name": "누가복음",
+"chapters": 24
+},
+{
+"no": 43,
+"code": "JHN",
+"name": "요한복음",
+"chapters": 21
+},
+{
+"no": 44,
+"code": "ACT",
+"name": "사도행전",
+"chapters": 28
+},
+{
+"no": 45,
+"code": "ROM",
+"name": "로마서",
+"chapters": 16
+},
+{
+"no": 46,
+"code": "1CO",
+"name": "고린도전서",
+"chapters": 16
+},
+{
+"no": 47,
+"code": "2CO",
+"name": "고린도후서",
+"chapters": 13
+},
+{
+"no": 48,
+"code": "GAL",
+"name": "갈라디아서",
+"chapters": 6
+},
+{
+"no": 49,
+"code": "EPH",
+"name": "에베소서",
+"chapters": 6
+},
+{
+"no": 50,
+"code": "PHP",
+"name": "빌립보서",
+"chapters": 4
+},
+{
+"no": 51,
+"code": "COL",
+"name": "골로새서",
+"chapters": 4
+},
+{
+"no": 52,
+"code": "1TH",
+"name": "데살로니가전서",
+"chapters": 5
+},
+{
+"no": 53,
+"code": "2TH",
+"name": "데살로니가후서",
+"chapters": 3
+},
+{
+"no": 54,
+"code": "1TI",
+"name": "디모데전서",
+"chapters": 6
+},
+{
+"no": 55,
+"code": "2TI",
+"name": "디모데후서",
+"chapters": 4
+},
+{
+"no": 56,
+"code": "TIT",
+"name": "디도서",
+"chapters": 3
+},
+{
+"no": 57,
+"code": "PHM",
+"name": "빌레몬서",
+"chapters": 1
+},
+{
+"no": 58,
+"code": "HEB",
+"name": "히브리서",
+"chapters": 13
+},
+{
+"no": 59,
+"code": "JAS",
+"name": "야고보서",
+"chapters": 5
+},
+{
+"no": 60,
+"code": "1PE",
+"name": "베드로전서",
+"chapters": 5
+},
+{
+"no": 61,
+"code": "2PE",
+"name": "베드로후서",
+"chapters": 3
+},
+{
+"no": 62,
+"code": "1JN",
+"name": "요한일서",
+"chapters": 5
+},
+{
+"no": 63,
+"code": "2JN",
+"name": "요한이서",
+"chapters": 1
+},
+{
+"no": 64,
+"code": "3JN",
+"name": "요한삼서",
+"chapters": 1
+},
+{
+"no": 65,
+"code": "JUD",
+"name": "유다서",
+"chapters": 1
+},
+{
+"no": 66,
+"code": "REV",
+"name": "요한계시록",
+"chapters": 22
+}
+]

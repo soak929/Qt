@@ -1,0 +1,39 @@
+name: 오늘의 본문 가져오기
+
+on:
+  schedule:
+    # 한국 시간 00:20, 03:00, 05:30 (UTC 기준으로 적음)
+    - cron: "20 15 * * *"
+    - cron: "0 18 * * *"
+    - cron: "30 20 * * *"
+  workflow_dispatch: {}   # Actions 탭에서 수동 실행 가능
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-qt
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 생명의삶 장절 가져오기
+        env:
+          # 마지막(05:30) 실행에서도 못 구하면 실패 처리 → GitHub가 메일로 알려줌
+          STRICT: ${{ github.event.schedule == '30 20 * * *' }}
+        run: python scripts/fetch_qt.py
+      - name: 변경사항 저장
+        run: |
+          if [ -n "$(git status --porcelain data)" ]; then
+            git config user.name "qt-bot"
+            git config user.email "qt-bot@users.noreply.github.com"
+            git add data/today.json data/history.json
+            git commit -m "오늘의 본문: $(date -u -d '+9 hours' +%F)"
+            git push
+          fi
