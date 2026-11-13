@@ -286,8 +286,8 @@
 
   // ---------- 시작 ----------
   async function init() {
-    if (CFG.title) document.title = CFG.title;
-    $("today-date").textContent = `${CFG.title ? CFG.title + " · " : ""}${prettyDate(TODAY).replace(/^\d+년 /, "")}`;
+    if (CFG.title) $("app-title").textContent = CFG.title;
+    $("today-date").textContent = prettyDate(TODAY).replace(/^\d+년 /, "");
     $("cal-jump").onclick = () => $("cal-section").scrollIntoView({ behavior: "smooth" });
     $("duranno-link").href = DURANNO(TODAY);
     setupFont();

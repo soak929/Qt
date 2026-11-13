@@ -76,7 +76,19 @@ main { max-width: 620px; margin: 0 auto; padding: 0 24px 48px; }
 
 /* ---------- 읽기 영역 ---------- */
 .reader { padding-top: 34px; }
-.kicker { text-align: center; color: var(--muted); font-size: 0.82em; margin: 0 0 6px; letter-spacing: 0.01em; }
+.masthead { text-align: center; margin: 0 0 30px; }
+.app-title {
+  display: inline-block;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.05em;
+  margin: 0;
+  padding: 5px 16px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+.kicker { text-align: center; color: var(--muted); font-size: 0.82em; margin: 10px 0 0; letter-spacing: 0.01em; }
 .book {
   font-family: var(--serif);
   font-weight: 700;

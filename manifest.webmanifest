@@ -1,6 +1,6 @@
 {
-  "name": "광우의 묵상",
-  "short_name": "광우의 묵상",
+  "name": "매일 큐티",
+  "short_name": "매일 큐티",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
