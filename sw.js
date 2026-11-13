@@ -1,5 +1,5 @@
 // 오프라인 지원: 한 번 열어 본 화면과 본문은 인터넷이 없어도 열리게 한다.
-const VERSION = "v4";
+const VERSION = "v5";
 const SHELL = `qt-shell-${VERSION}`;
 const DATA = "qt-data";      // 오늘 장절 (자주 바뀜)
 const BIBLE = "qt-bible";    // 성경 본문 (바뀌지 않음)
