@@ -119,6 +119,7 @@ main { max-width: 620px; margin: 0 auto; padding: 0 24px 48px; }
   letter-spacing: -0.005em;
 }
 .verses p { margin: 0 0 1.1em; }
+.verses p::after { content: ""; display: table; clear: both; }
 .dropcap {
   float: left;
   font-family: var(--serif);
@@ -128,7 +129,7 @@ main { max-width: 620px; margin: 0 auto; padding: 0 24px 48px; }
   font-weight: 400;
   margin: 0.06em 0.16em 0 0;
 }
-.v { border-radius: 3px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background 0.15s; }
+.v { display: block; margin: 0 0 0.55em; padding: 0 2px; border-radius: 4px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background 0.15s; }
 .v.hl { background: var(--hl); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .vn {
   font-family: var(--serif);
