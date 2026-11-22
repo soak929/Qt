@@ -108,5 +108,16 @@
   "label": "고린도후서 1:15-24",
   "date": "2026-11-22",
   "source_url": "https://www.duranno.com/qt/view/bible.asp?qtDate=2026-11-22"
+ },
+ "2026-11-23": {
+  "book_no": 47,
+  "book": "고린도후서",
+  "start_ch": 2,
+  "start_v": 1,
+  "end_ch": 2,
+  "end_v": 11,
+  "label": "고린도후서 2:1-11",
+  "date": "2026-11-23",
+  "source_url": "https://www.duranno.com/qt/view/bible.asp?qtDate=2026-11-23"
  }
 }
